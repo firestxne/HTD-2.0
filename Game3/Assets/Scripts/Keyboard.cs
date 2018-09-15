@@ -6,18 +6,19 @@ using UnityEngine.UI;
 public class Keyboard : MonoBehaviour {
 
 	//Text InputText;
-	//Text Term;
+	Text Term;
 	//string inpu="";
 	private InputField input;
 
 	void Awake() {
 		input = GameObject.Find ("InputField").GetComponent<InputField> ();
-	}
+        Term = GetComponentInParent<Text>();
+    }
 
 	//void Start()
 	//{
 	//    InputText = GetComponentInChildren<Text> ();
-	//    Term = GetComponentInParent<Text> ();
+	    
 
 	//}
 
@@ -29,7 +30,7 @@ public class Keyboard : MonoBehaviour {
 		Debug.Log ("You entered: " + test);
 		//Debug.Log (Term.text);
 		input.text = "";
-
+        Term.text += test;
 		if (test == "ass")
 			Debug.Log ("You did some ass");
 		//Debug.Log (InputText.text);
