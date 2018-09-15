@@ -46,8 +46,8 @@ public class Movement : MonoBehaviour
         moving = new Vector3(transform.position.x + hori, transform.position.y + vert, 0);
         transform.position = Vector3.Lerp(transform.position, moving, Time.deltaTime);
 
-		Debug.Log(Input.GetAxisRaw("Horizontal"));
-		Debug.Log(Input.GetAxisRaw("Vertical"));
+		//Debug.Log(Input.GetAxisRaw("Horizontal"));
+		//Debug.Log(Input.GetAxisRaw("Vertical"));
 		ani.SetFloat ("Move X",Input.GetAxisRaw ("Horizontal"));
 		ani.SetFloat ("Move Y",Input.GetAxisRaw ("Vertical"));
     }
