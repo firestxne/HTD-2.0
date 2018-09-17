@@ -7,18 +7,50 @@ public class Movement : MonoBehaviour
 
     // Use this for initialization
 
+    bool playerMoving;
     Vector3 moving;
+    Vector2 lastMove;
 //    [SerializeField] float speed;
 //	Animator ani ;
     //SpriteRenderer spritere;
 
 	public float moveSpeed;
 	private Animator ani;
+    [SerializeField] GameObject terminalUI1;
+    [SerializeField] GameObject terminalUI2;
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.gameObject.tag == "PC1")
+        {
+            Debug.Log(collision.gameObject.tag);
+            terminalUI1.SetActive(true);
+        }
+        if (collision.gameObject.tag == "PC2")
+        {
+            Debug.Log(collision.gameObject.tag);
+            terminalUI2.SetActive(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.tag == "PC1")
+        {
+            Debug.Log(collision.gameObject.tag);
+            terminalUI1.SetActive(false);
+        }
+        if (collision.gameObject.tag == "PC2")
+        {
+            Debug.Log(collision.gameObject.tag);
+            terminalUI2.SetActive(false);
+        }
+    }
 
     void Start()
     {
-
+        
 		ani = GetComponent<Animator> ();
         //spritere = GetComponent<SpriteRenderer>();
 
@@ -27,18 +59,22 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        playerMoving = false;
+	if (Input.GetAxisRaw ("Horizontal") > 0.5f || Input.GetAxisRaw ("Horizontal") < -0.5f) 
+		{
+            //transform.Translate (new Vector3 (Input.GetAxisRaw ("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
+            playerMoving = true;
+            lastMove = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+        }
 
-//		if (Input.GetAxisRaw ("Horizontal") > 0.5f || Input.GetAxisRaw ("Horizontal") < -0.5f) 
-//		{
-//			transform.Translate (new Vector3 (Input.GetAxisRaw ("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
-//
-//		}
-//
-//		if (Input.GetAxisRaw ("Vertical") > 0.5f || Input.GetAxisRaw ("Vertical") < -0.5f) 
-//		{
-//			transform.Translate (new Vector3 (Input.GetAxisRaw ("Vertical") * moveSpeed * Time.deltaTime, 0f));
-//
-//		}
+		if (Input.GetAxisRaw ("Vertical") > 0.5f || Input.GetAxisRaw ("Vertical") < -0.5f)
+        {
+            playerMoving = true;
+            lastMove = new Vector2(0f, Input.GetAxisRaw("Vertical"));
+            //Debug.Log(lastMove.y);
+            //transform.Translate (new Vector3 (Input.GetAxisRaw ("Vertical") * moveSpeed * Time.deltaTime, 0f));
+
+        }
 
 
         float hori = Input.GetAxis("Horizontal")*moveSpeed;
@@ -50,5 +86,8 @@ public class Movement : MonoBehaviour
 		//Debug.Log(Input.GetAxisRaw("Vertical"));
 		ani.SetFloat ("Move X",Input.GetAxisRaw ("Horizontal"));
 		ani.SetFloat ("Move Y",Input.GetAxisRaw ("Vertical"));
+        ani.SetBool("PlayerMove", playerMoving);
+        ani.SetFloat("LastMoveX", lastMove.x);
+        ani.SetFloat("LastMoveY", lastMove.y);
     }
 }
