@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
 	private Animator ani;
     [SerializeField] GameObject terminalUI1;
     [SerializeField] GameObject terminalUI2;
-
+/*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
             terminalUI2.SetActive(false);
         }
     }
-
+    */
     void Start()
     {
         
@@ -60,6 +60,7 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         playerMoving = false;
+        
 	if (Input.GetAxisRaw ("Horizontal") > 0.5f || Input.GetAxisRaw ("Horizontal") < -0.5f) 
 		{
             //transform.Translate (new Vector3 (Input.GetAxisRaw ("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
