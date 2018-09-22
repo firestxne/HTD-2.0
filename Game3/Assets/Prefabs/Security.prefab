@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4496252112075728}
   m_Layer: 0
   m_Name: Security
-  m_TagString: Untagged
+  m_TagString: Security
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 95287228609465126}
   m_Layer: 0
   m_Name: Security Sprite
-  m_TagString: Untagged
+  m_TagString: Security
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

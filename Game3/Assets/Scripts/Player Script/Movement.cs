@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
 
     // Use this for initialization
+    
     [SerializeField] GameObject floppy;
     bool interact = false;
     bool hacking = false;
@@ -53,6 +55,13 @@ public class Movement : MonoBehaviour
         {
             Debug.Log(collision.gameObject.tag);
             collision.gameObject.SetActive(false);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag=="Security")
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 

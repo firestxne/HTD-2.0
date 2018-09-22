@@ -9,6 +9,7 @@ TagManager:
   - PC1
   - PC2
   - Floppy
+  - Security
   layers:
   - Default
   - TransparentFX
