@@ -6,8 +6,10 @@ public class Movement : MonoBehaviour
 {
 
     // Use this for initialization
-    public bool interact = false;
+    GameObject floppy;
+    bool interact = false;
     bool hacking = false;
+    bool admin = false; //set true if floppy recieved
     bool playerMoving;
     Vector3 moving;
     Vector2 lastMove;
@@ -15,7 +17,7 @@ public class Movement : MonoBehaviour
 //	Animator ani ;
     //SpriteRenderer spritere;
 
-	public float moveSpeed;
+	[SerializeField] float moveSpeed;
 	private Animator ani;
     
     public void HackOn()
@@ -32,42 +34,64 @@ public class Movement : MonoBehaviour
     {
         return interact;
     }
-    //[SerializeField] GameObject terminalUI1;
-    //[SerializeField] GameObject terminalUI2;
-/*
+
+    public bool adminkey()
+    {
+        return admin;
+    }
+
+    public void Inventory()
+    {
+        if(!floppy.activeSelf)
+        {
+            admin = true;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (collision.gameObject.tag == "PC1")
+        if(collision.gameObject.tag=="Floppy")
         {
             Debug.Log(collision.gameObject.tag);
-            terminalUI1.SetActive(true);
-        }
-        if (collision.gameObject.tag == "PC2")
-        {
-            Debug.Log(collision.gameObject.tag);
-            terminalUI2.SetActive(true);
+            collision.gameObject.SetActive(false);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
+    //[SerializeField] GameObject terminalUI1;
+    //[SerializeField] GameObject terminalUI2;
+    /*
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
 
-        if (collision.gameObject.tag == "PC1")
-        {
-            Debug.Log(collision.gameObject.tag);
-            terminalUI1.SetActive(false);
+            if (collision.gameObject.tag == "PC1")
+            {
+                Debug.Log(collision.gameObject.tag);
+                terminalUI1.SetActive(true);
+            }
+            if (collision.gameObject.tag == "PC2")
+            {
+                Debug.Log(collision.gameObject.tag);
+                terminalUI2.SetActive(true);
+            }
         }
-        if (collision.gameObject.tag == "PC2")
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            Debug.Log(collision.gameObject.tag);
-            terminalUI2.SetActive(false);
+
+            if (collision.gameObject.tag == "PC1")
+            {
+                Debug.Log(collision.gameObject.tag);
+                terminalUI1.SetActive(false);
+            }
+            if (collision.gameObject.tag == "PC2")
+            {
+                Debug.Log(collision.gameObject.tag);
+                terminalUI2.SetActive(false);
+            }
         }
-    }
-    */
+        */
     void Start()
     {
         
 		ani = GetComponent<Animator> ();
+        floppy = GameObject.FindGameObjectWithTag("Floppy");
         //spritere = GetComponent<SpriteRenderer>();
 
     }
@@ -109,6 +133,7 @@ public class Movement : MonoBehaviour
             ani.SetFloat("LastMoveX", lastMove.x);
             ani.SetFloat("LastMoveY", lastMove.y);
         }
+        Inventory();
     }
 
     void Update()

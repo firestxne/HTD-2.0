@@ -7,7 +7,7 @@ public class Keyboard2 : MonoBehaviour {
 
 
     //Text InputText;
-    Text Term;
+    [SerializeField] Text Term;
     //string inpu="";
     GameObject terminalType;
     private InputField input;
@@ -15,7 +15,7 @@ public class Keyboard2 : MonoBehaviour {
     void Awake()
     {
         input = GameObject.Find("InputField").GetComponent<InputField>();
-        Term = GetComponentInParent<Text>();
+        //Term = GetComponentInParent<Text>();
 
     }
 

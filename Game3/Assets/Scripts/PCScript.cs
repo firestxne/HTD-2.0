@@ -7,6 +7,7 @@ public class PCScript : MonoBehaviour {
     // Use this for initialization
     [SerializeField] Movement player;
     bool interact;
+    [SerializeField] bool admin=true;
     [SerializeField] GameObject terminalUI;
 
     void Start()
@@ -15,12 +16,24 @@ public class PCScript : MonoBehaviour {
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (interact) { 
-            Debug.Log("TESt");
-            Debug.Log(collision.gameObject.tag);
-            terminalUI.SetActive(true);
-            player.HackOn();
-    }
+        interact = player.interaction();
+        if (!admin)
+        {
+            admin = player.adminkey();
+        }
+        if (interact)
+        {
+            if (admin)
+            {
+                Debug.Log("TESt");
+                Debug.Log(collision.gameObject.tag);
+                terminalUI.SetActive(true);
+                player.HackOn();
+            }
+            else
+                Debug.Log("No Admin Privellege");
+        }
+        
         
     }
 
@@ -33,6 +46,6 @@ public class PCScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        interact = player.interaction();
+        
 	}
 }
