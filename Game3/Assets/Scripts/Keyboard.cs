@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class Keyboard : MonoBehaviour {
 
 	//Text InputText;
-	Text Term;
+	[SerializeField]Text Term;
     //string inpu="";
     GameObject terminalType;
 	private InputField input;
 
 	void Awake() {
 		input = GameObject.Find ("InputField").GetComponent<InputField> ();
-        Term = GetComponentInParent<Text>();
+        //Term = GetComponentInParent<Text>();
         
     }
 
