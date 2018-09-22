@@ -8,6 +8,7 @@ TagManager:
   - Terminal PC
   - PC1
   - PC2
+  - Floppy
   layers:
   - Default
   - TransparentFX

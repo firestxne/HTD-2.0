@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
 
     // Use this for initialization
-    GameObject floppy;
+    [SerializeField] GameObject floppy;
     bool interact = false;
     bool hacking = false;
     bool admin = false; //set true if floppy recieved
@@ -55,44 +55,11 @@ public class Movement : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
     }
-    //[SerializeField] GameObject terminalUI1;
-    //[SerializeField] GameObject terminalUI2;
-    /*
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
 
-            if (collision.gameObject.tag == "PC1")
-            {
-                Debug.Log(collision.gameObject.tag);
-                terminalUI1.SetActive(true);
-            }
-            if (collision.gameObject.tag == "PC2")
-            {
-                Debug.Log(collision.gameObject.tag);
-                terminalUI2.SetActive(true);
-            }
-        }
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-
-            if (collision.gameObject.tag == "PC1")
-            {
-                Debug.Log(collision.gameObject.tag);
-                terminalUI1.SetActive(false);
-            }
-            if (collision.gameObject.tag == "PC2")
-            {
-                Debug.Log(collision.gameObject.tag);
-                terminalUI2.SetActive(false);
-            }
-        }
-        */
     void Start()
     {
         
 		ani = GetComponent<Animator> ();
-        floppy = GameObject.FindGameObjectWithTag("Floppy");
-        //spritere = GetComponent<SpriteRenderer>();
 
     }
 
@@ -138,7 +105,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetAxisRaw("Interact")>0.1f)
         {
             interact = true;
         }

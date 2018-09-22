@@ -8,6 +8,7 @@ public class Keyboard : MonoBehaviour {
 	//Text InputText;
 	[SerializeField]Text Term;
     //string inpu="";
+    [SerializeField] GameObject floppyHolder;
     GameObject terminalType;
 	private InputField input;
 
@@ -49,6 +50,11 @@ public class Keyboard : MonoBehaviour {
         else if (test == "ls -la" || test == "ls -al" || test == "ls -a -l" || test == "ls -l -a")
         {
             return test + "\n\t wr--r--r     .hidden";
+        }
+        else if(test == "cat .hidden")
+        {
+            floppyHolder.SetActive(true);
+            return "\nEjecting floppy...";
         }
         else
         {
