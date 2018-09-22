@@ -5,14 +5,21 @@ using UnityEngine;
 public class PCScript : MonoBehaviour {
 
     // Use this for initialization
+    [SerializeField] Movement player;
     bool interact;
     [SerializeField] GameObject terminalUI;
+
+    void Start()
+    {
+        
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (interact) { 
-        Debug.Log("TESt");
-        Debug.Log(collision.gameObject.tag);
-        terminalUI.SetActive(true);
+            Debug.Log("TESt");
+            Debug.Log(collision.gameObject.tag);
+            terminalUI.SetActive(true);
+            player.HackOn();
     }
         
     }
@@ -23,17 +30,9 @@ public class PCScript : MonoBehaviour {
         terminalUI.SetActive(false);
     }
 
-    void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            interact = true;
-        }
-        else
-            interact = false;
+        interact = player.interaction();
 	}
 }
